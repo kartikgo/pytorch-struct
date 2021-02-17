@@ -1,41 +1,42 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>torch_struct.autoregressive &mdash; pytorch-struct 0.4 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../README.html">Pytorch-Struct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Torch-Struct: Structured Prediction Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../model.html">Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../networks.html">Networks and Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../semiring.html">Advanced: Semirings</a></li>
@@ -93,6 +95,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -127,11 +130,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
@@ -217,6 +222,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">=</span> <span class="n">normalize</span>
         <span class="n">event_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_length</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
         <span class="n">batch_shape</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">batch_shape</span><span class="o">=</span><span class="n">batch_shape</span><span class="p">,</span> <span class="n">event_shape</span><span class="o">=</span><span class="n">event_shape</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -225,6 +231,7 @@
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            value (tensor): One-hot events (*sample_shape x batch_shape x N*)</span>
+<span class="sd">            sparse (bool): implement sparse</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            log_probs (*sample_shape x batch_shape*)</span>
@@ -269,7 +276,9 @@
         <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_beam_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semiring</span><span class="p">,</span> <span class="n">gumbel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="n">beam</span> <span class="o">=</span> <span class="n">semiring</span><span class="o">.</span><span class="n">one_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">semiring</span><span class="o">.</span><span class="n">size</span><span class="p">(),)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_shape</span><span class="p">))</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">semiring</span><span class="o">.</span><span class="n">one_</span><span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">semiring</span><span class="o">.</span><span class="n">size</span><span class="p">(),)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">ssize</span> <span class="o">=</span> <span class="n">semiring</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 
         <span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
@@ -278,7 +287,9 @@
                     <span class="n">s</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()[</span>
                         <span class="p">(</span>
                             <span class="n">indices</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                            <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">batch_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span>
+                            <span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
                         <span class="p">)</span>
                         <span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
                         <span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -355,6 +366,9 @@
 
 <span class="sd">        * Differentiable Scheduled Sampling for Credit Assignment :cite:`goyal2017differentiable`</span>
 
+<span class="sd">        Parameters:</span>
+<span class="sd">            alpha : alpha param</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            greedy_path (*batch x N x C*)</span>
 <span class="sd">            greedy_max (*batch*)</span>
@@ -366,6 +380,9 @@
 <div class="viewcode-block" id="Autoregressive.beam_topk"><a class="viewcode-back" href="../../model.html#torch_struct.Autoregressive.beam_topk">[docs]</a>    <span class="k">def</span> <span class="nf">beam_topk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute &quot;top-k&quot; using beam search</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            K : top-k</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            paths (*K x batch x N x C*)</span>
@@ -431,20 +448,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Sasha Rush
+        &#169; Copyright 2020, Sasha Rush.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -452,7 +474,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

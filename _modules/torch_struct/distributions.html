@@ -1,41 +1,42 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>torch_struct.distributions &mdash; pytorch-struct 0.4 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../README.html">Pytorch-Struct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Torch-Struct: Structured Prediction Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../model.html">Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../networks.html">Networks and Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../semiring.html">Advanced: Semirings</a></li>
@@ -93,6 +95,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -127,11 +130,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
@@ -164,8 +169,12 @@
     <span class="n">LogSemiring</span><span class="p">,</span>
     <span class="n">MaxSemiring</span><span class="p">,</span>
     <span class="n">EntropySemiring</span><span class="p">,</span>
+    <span class="n">CrossEntropySemiring</span><span class="p">,</span>
+    <span class="n">KLDivergenceSemiring</span><span class="p">,</span>
     <span class="n">MultiSampledSemiring</span><span class="p">,</span>
     <span class="n">KMaxSemiring</span><span class="p">,</span>
+    <span class="n">StdSemiring</span><span class="p">,</span>
+    <span class="n">GumbelCRFSemiring</span><span class="p">,</span>
 <span class="p">)</span>
 
 
@@ -185,8 +194,6 @@
 <span class="sd">        log_potentials (tensor, batch_shape x event_shape) :  log-potentials :math:`\phi`</span>
 <span class="sd">        lengths (long tensor, batch_shape) : integers for length masking</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">has_enumerate_support</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_potentials</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{}):</span>
         <span class="n">batch_shape</span> <span class="o">=</span> <span class="n">log_potentials</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
@@ -217,6 +224,7 @@
             <span class="n">value</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">),</span>
             <span class="n">batch_dims</span><span class="o">=</span><span class="n">batch_dims</span><span class="p">,</span>
         <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">v</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">partition</span></div>
 
 <div class="viewcode-block" id="StructDistribution.entropy"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.entropy">[docs]</a>    <span class="nd">@lazy_property</span>
@@ -227,7 +235,47 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            entropy (*batch_shape*)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">EntropySemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StructDistribution.cross_entropy"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.cross_entropy">[docs]</a>    <span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute cross-entropy for distribution p(self) and q(other) :math:`H[p, q]`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            other : Comparison distribution</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            cross entropy (*batch_shape*)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">CrossEntropySemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StructDistribution.kl"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.kl">[docs]</a>    <span class="k">def</span> <span class="nf">kl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute KL-divergence for distribution p(self) and q(other) :math:`KL[p || q] = H[p, q] - H[p]`.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            other : Comparison distribution</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            cross entropy (*batch_shape*)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">KLDivergenceSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StructDistribution.max"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.max">[docs]</a>    <span class="nd">@lazy_property</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute an max for distribution :math:`\max p(z)`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            max (*batch_shape*)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">MaxSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="StructDistribution.argmax"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.argmax">[docs]</a>    <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -239,16 +287,35 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">MaxSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">marginals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="StructDistribution.topk"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.topk">[docs]</a>    <span class="k">def</span> <span class="nf">topk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class="viewcode-block" id="StructDistribution.kmax"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.kmax">[docs]</a>    <span class="k">def</span> <span class="nf">kmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the k-max for distribution :math:`k\max p(z)`.</span>
+
+<span class="sd">        Parameters :</span>
+<span class="sd">            k : Number of solutions to return</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            kmax (*k x batch_shape*)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">enable_grad</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">KMaxSemiring</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">,</span> <span class="n">_raw</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StructDistribution.topk"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.topk">[docs]</a>    <span class="k">def</span> <span class="nf">topk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the k-argmax for distribution :math:`k\max p(z)`.</span>
+
+<span class="sd">        Parameters :</span>
+<span class="sd">            k : Number of solutions to return</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            kmax (*k x batch_shape x event_shape*)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">KMaxSemiring</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">.</span><span class="n">marginals</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">,</span> <span class="n">_raw</span><span class="o">=</span><span class="kc">True</span>
-        <span class="p">)</span></div>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">enable_grad</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">KMaxSemiring</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">.</span><span class="n">marginals</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">,</span> <span class="n">_raw</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span></div>
 
     <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -268,6 +335,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">LogSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">marginals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="StructDistribution.count"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.count">[docs]</a>    <span class="nd">@lazy_property</span>
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Compute the log-partition function.&quot;</span>
+        <span class="n">ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">)</span>
+        <span class="n">ones</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">StdSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ones</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">gumbel_crf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">enable_grad</span><span class="p">():</span>
+            <span class="n">st_gumbel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">GumbelCRFSemiring</span><span class="p">(</span><span class="n">temperature</span><span class="p">))</span><span class="o">.</span><span class="n">marginals</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">st_gumbel</span>
+
     <span class="c1"># @constraints.dependent_property</span>
     <span class="c1"># def support(self):</span>
     <span class="c1">#     pass</span>
@@ -278,7 +359,7 @@
 
 <div class="viewcode-block" id="StructDistribution.partition"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.partition">[docs]</a>    <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s2">&quot;Compute the partition function.&quot;</span>
+        <span class="s2">&quot;Compute the log-partition function.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">(</span><span class="n">LogSemiring</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="StructDistribution.sample"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()):</span>
@@ -311,20 +392,6 @@
 <div class="viewcode-block" id="StructDistribution.from_event"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.from_event">[docs]</a>    <span class="k">def</span> <span class="nf">from_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s2">&quot;Convert event to simple representation.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">struct</span><span class="o">.</span><span class="n">from_parts</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="StructDistribution.enumerate_support"><a class="viewcode-back" href="../../model.html#torch_struct.StructDistribution.enumerate_support">[docs]</a>    <span class="k">def</span> <span class="nf">enumerate_support</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute the full exponential enumeration set.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            (enum, enum_lengths) - (*tuple cardinality x batch_shape x event_shape*)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">enum_lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_struct</span><span class="p">()</span><span class="o">.</span><span class="n">enumerate</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span>
-        <span class="p">)</span>
-        <span class="c1"># if expand:</span>
-        <span class="c1">#     edges = edges.unsqueeze(1).expand(edges.shape[:1] + self.batch_shape[:1] + edges.shape[1:])</span>
-        <span class="k">return</span> <span class="n">edges</span><span class="p">,</span> <span class="n">enum_lengths</span></div>
 
     <span class="k">def</span> <span class="nf">_struct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">struct</span><span class="p">(</span><span class="n">sr</span> <span class="k">if</span> <span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">LogSemiring</span><span class="p">)</span></div>
@@ -455,9 +522,9 @@
 <span class="sd">    Event shape is of the form:</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">       log_potentials (tensor) : event shape (*N x N*) head, child  with</span>
-<span class="sd">                                 arc scores with root scores on diagonal e.g.</span>
-<span class="sd">                                 :math:`\phi(i, j)` where :math:`\phi(i, i)` is (root, i).</span>
+<span class="sd">       log_potentials (tensor) : event shape (*N x N*) head, child or (*N x N x L*) head,</span>
+<span class="sd">                                 child, labels with arc scores with root scores on diagonal</span>
+<span class="sd">                                 e.g. :math:`\phi(i, j)` where :math:`\phi(i, i)` is (root, i).</span>
 <span class="sd">       lengths (long tensor) : batch shape integers for length masking.</span>
 
 
@@ -470,7 +537,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">struct</span> <span class="o">=</span> <span class="n">DepTree</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_potentials</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{},</span> <span class="n">multiroot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DependencyCRF</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">log_potentials</span><span class="p">,</span> <span class="n">lengths</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">struct</span> <span class="o">=</span> <span class="n">DepTree</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">struct</span><span class="p">,</span> <span class="s2">&quot;multiroot&quot;</span><span class="p">,</span> <span class="n">multiroot</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TreeCRF"><a class="viewcode-back" href="../../model.html#torch_struct.TreeCRF">[docs]</a><span class="k">class</span> <span class="nc">TreeCRF</span><span class="p">(</span><span class="n">StructDistribution</span><span class="p">):</span>
@@ -555,7 +625,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">struct</span> <span class="o">=</span> <span class="n">DepTree</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_potentials</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{},</span> <span class="n">multiroot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NonProjectiveDependencyCRF</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">log_potentials</span><span class="p">,</span> <span class="n">lengths</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiroot</span> <span class="o">=</span> <span class="n">multiroot</span>
 
     <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">marginals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -567,7 +639,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            marginals (*batch_shape x event_shape*)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">deptree_nonproj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">deptree_nonproj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiroot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_shape</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">()):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
@@ -577,7 +649,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute the partition function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">deptree_part</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">deptree_part</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_potentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiroot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span><span class="p">)</span>
 
     <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -586,31 +658,36 @@
 
 <span class="sd">        (Currently not implemented)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">pass</span>
 
     <span class="nd">@lazy_property</span>
     <span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+        <span class="k">pass</span></div>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Sasha Rush
+        &#169; Copyright 2020, Sasha Rush.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -618,7 +695,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

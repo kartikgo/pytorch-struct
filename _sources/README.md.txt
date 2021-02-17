@@ -1,6 +1,6 @@
-# Pytorch-Struct
+# Torch-Struct: Structured Prediction Library 
 
-[![Build Status](https://travis-ci.org/harvardnlp/pytorch-struct.svg?branch=master)](https://travis-ci.org/harvardnlp/pytorch-struct)
+![Tests](https://github.com/harvardnlp/pytorch-struct/workflows/Tests/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/harvardnlp/pytorch-struct/badge.svg?branch=master)](https://coveralls.io/github/harvardnlp/pytorch-struct?branch=master)
 
 <p align="center">
@@ -17,6 +17,8 @@ A library of tested, GPU implementations of core structured prediction algorithm
 * ...
 
 Designed to be used as efficient batched layers in other PyTorch code. 
+
+[Tutorial paper](https://arxiv.org/abs/2002.00876) describing methodology.
 
 ## Getting Started
 
@@ -165,3 +167,16 @@ Everything implemented through semiring dynamic programming.
 * <a href="https://github.com/harvardnlp/pytorch-struct/blob/master/examples/tree.py">Structured VAE </a>
 
 <img src="https://media.giphy.com/media/IdxKpsWBHa5PpjuhHM/giphy.gif">
+
+## Citation
+
+```
+@misc{alex2020torchstruct,
+    title={Torch-Struct: Deep Structured Prediction Library},
+    author={Alexander M. Rush},
+    year={2020},
+    eprint={2002.00876},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+```
